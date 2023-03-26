@@ -123,7 +123,7 @@ def main():
     parser.add_argument("--prng_seed", 
                         type=int, 
                         default=1729)
-    parser.add_argument("--strong_determinism_wanted", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--strong_determinism_wanted", action='store_true', default=True)
 
     args = parser.parse_args()
 

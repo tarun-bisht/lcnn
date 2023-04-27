@@ -41,7 +41,8 @@ class GradNormRegularizedLoss(CELoss):
 
         grad_x = torch.autograd.grad(raw_loss, input,
                                      only_inputs=True,
-                                     create_graph=True)[0]
+                                     create_graph=True,
+                                     allow_unused=True)[0]
         gradnorm = 1e5 * grad_x.pow(2).sum() / input.size(0)
 
         self.metadata = {
@@ -206,7 +207,8 @@ class CurvatureAndGradientRegularizedLoss(CELoss):
         raw_loss = self.loss_criterion(out, target)
         loss_grad = torch.autograd.grad(outputs=raw_loss,
                                         inputs=input,
-                                        create_graph=True)[0]
+                                        create_graph=True,
+                                        allow_unused=True)[0]
         gradnorm = 1e5 * loss_grad.pow(2).sum() / input.size(0)
         
         self.metadata = {
